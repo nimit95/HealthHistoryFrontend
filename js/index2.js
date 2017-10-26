@@ -138,9 +138,13 @@ $(document).ready(function () {
           <h2 class="text-center">${data.phone}</h2>
           <h2 class="text-center">${data.status}</h2>
           <h2 class="text-center">${data.blood_group}</h2>
-          <div class="text-center"><input type="button" id="get_file" value="Grab file">
+          <div class="text-center"><input type="button" id="get_file" value="Upload report image">
             <input type="file"  accept="image/x-png,image/gif,image/jpeg" id="my_file">
-            <div id="customfileupload">Upload report image</div></div>
+            <div id="customfileupload">Path</div></div>
+            <div id="progress-wrp">
+                <div class="progress-bar"></div>
+         <div class="status">0%</div>
+            </div>
           <br/><br/>
           
         `);
@@ -151,6 +155,14 @@ $(document).ready(function () {
 
           $('input[type=file]').change(function (e) {
               $('#customfileupload').html($(this).val());
+
+              var file = $(this)[0].files[0];
+              var upload = new Upload(file);
+
+              // maby check size or type here with upload.getSize() and upload.getType()
+
+              // execute upload
+              upload.doUpload();
           });
 
       }).fail(function (err) {
@@ -158,4 +170,5 @@ $(document).ready(function () {
       })
     })
   });
+
 });
