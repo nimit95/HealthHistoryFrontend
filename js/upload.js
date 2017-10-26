@@ -17,10 +17,10 @@ Upload.prototype.doUpload = function () {
     var formData = new FormData();
 
     // add assoc key values, this will be posts values
-    formData.append("file", this.file, this.getName());
+    formData.append("avatar", this.file);
     formData.append("upload_file", true);
 
-    $.ajax({
+    return $.ajax({
         type: "POST",
         url: `${url}/user/rR4I3Sz9fSMSgLwmMSXvCJvDkEE2`,
         xhr: function () {
@@ -32,9 +32,11 @@ Upload.prototype.doUpload = function () {
         },
         success: function (data) {
             // your callback here
+          console.log(data)
         },
         error: function (error) {
             // handle error
+          console.log(2)
         },
         async: true,
         data: formData,

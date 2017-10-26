@@ -138,16 +138,22 @@ $(document).ready(function () {
           <h2 class="text-center">${data.phone}</h2>
           <h2 class="text-center">${data.status}</h2>
           <h2 class="text-center">${data.blood_group}</h2>
-          <div class="text-center"><input type="button" id="get_file" value="Upload report image">
-            <input type="file"  accept="image/x-png,image/gif,image/jpeg" id="my_file">
-            <div id="customfileupload">Path</div></div>
-            <div id="progress-wrp">
-                <div class="progress-bar"></div>
-         <div class="status">0%</div>
-            </div>
+          <div class="text-center">
+            <input type="button" id="get_file" value="Upload report image">
+            <input type="file" name="avatar" accept="image/x-png,image/gif,image/jpeg" id="my_file">
+            <span id="status"></span>  
+          </div>
+          <div id="progress-wrp">
+            <div class="progress-bar"></div>
+            <div class="status">0%</div>
+          </div>
+          
           <br/><br/>
           
         `);
+
+
+
 
           document.getElementById('get_file').onclick = function() {
               document.getElementById('my_file').click();
@@ -157,12 +163,22 @@ $(document).ready(function () {
               $('#customfileupload').html($(this).val());
 
               var file = $(this)[0].files[0];
+              console.log(file)
               var upload = new Upload(file);
 
               // maby check size or type here with upload.getSize() and upload.getType()
 
               // execute upload
-              upload.doUpload();
+              upload.doUpload().done(function (data) {
+                if(data.success){
+                  $('#status').text('File Successfully Uploaded').toggleClass('text-success');
+                }else{
+                  $('#status').text('Error Uploading File').toggleClass('text-danger');
+
+                }
+              }).fail(function () {
+                console.log(2)
+              });
           });
 
       }).fail(function (err) {
