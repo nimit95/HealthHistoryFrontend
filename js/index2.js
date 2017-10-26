@@ -32,6 +32,8 @@ $(document).ready(function () {
 
 
         var arr = Object.keys(data.userImages);
+        console.log(data.userImages);
+        console.log(arr);
 
         for (let i = 0; i < arr.length; i += 3) {
 
@@ -49,7 +51,7 @@ $(document).ready(function () {
               </div>
             </div>
           `);
-          if (i + 1 < data.userImages.length) {
+          if (i + 1 < arr.length) {
             $(`#card-group-${i}`).append(`
             <div class="card col">
               <img style="height: 400px" class="card-img-top" src="${data.userImages[arr[i + 1]].url}" alt="Card image cap">
@@ -68,7 +70,7 @@ $(document).ready(function () {
           }
 
 
-          if (i + 2 < data.userImages.length) {
+          if (i + 2 < arr.length) {
             $(`#card-group-${i}`).append(`
             <div class="card col">
               <img style="height: 400px" class="card-img-top" src="${data.userImages[arr[i + 2]].url}" alt="Card image cap">
