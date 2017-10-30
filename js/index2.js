@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $content.append(`<br/>
       <div class="input-group">
-        <input class="form-control" type="text" placeholder="Search with UserId">
+        <input class="form-control" type="text" placeholder="Search with UserId" id="userid">
         <span class="input-group-btn">
           <button id="searchWithUserId" class="btn btn-primary" type="button">
             <i class="fa fa-search"></i>
@@ -18,7 +18,8 @@ $(document).ready(function () {
     `);
 
     $('#searchWithUserId').click(function () {
-      $.get(`${url}/user/rR4I3Sz9fSMSgLwmMSXvCJvDkEE2`).done(function (data) {
+        var bla = $('#userid').val();
+      $.get(`${url}/user/${bla}`).done(function (data) {
         console.log(data);
 
         $content.append(`
@@ -105,7 +106,7 @@ $(document).ready(function () {
 
     $content.append(`<br/>
       <div class="input-group">
-        <input class="form-control" type="text" placeholder="Search with UserId">
+        <input class="form-control" type="text" placeholder="Search with UserId" id="userids">
         <span class="input-group-btn">
           <button id="searchWithUserId" class="btn btn-primary" type="button">
             <i class="fa fa-search"></i>
@@ -115,21 +116,9 @@ $(document).ready(function () {
     `);
 
     $('#searchWithUserId').click(function () {
-      $content.empty();
 
-      $content.append(`<h1>Reports</h1>`);
-
-      $content.append(`<br/>
-      <div class="input-group">
-        <input class="form-control" type="text" placeholder="Search with UserId">
-        <span class="input-group-btn">
-          <button id="searchWithUserId" class="btn btn-primary" type="button">
-            <i class="fa fa-search"></i>
-          </button>
-        </span>
-      </div>
-      `);
-      $.get(`${url}/user/rR4I3Sz9fSMSgLwmMSXvCJvDkEE2`).done(function (data) {
+        var bla = $('#userids').val();
+      $.get(`${url}/user/` + bla ).done(function (data) {
         console.log(data);
 
         $content.append(`
